@@ -1,23 +1,111 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rob.games</title>
-    <style>
-        html,body { height:100%; margin:0; }
-        body {
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-family: 'tohamo', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background:#ff651d;
-            color:#ffffff;
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="page-header">
+        <img
+          class="header-gif"
+          src="gifs/HeaderGif.gif"
+          alt=""
+          width="498"
+          height="373"
+        />
+        <div class="page-header-title">
+          <h1 class="rainbow-text">Rob.games</h1>
+          <p class="version-tag">Version Alpha 0.01</p>
+        </div>
+      </header>
+
+      <section class="charset" aria-label="Character set">
+        <div class="charset-block">
+          <h2 class="charset-heading">A-Z</h2>
+          <div class="charset-grid charset-grid--13">
+            <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span>
+            <span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span>
+            <span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span>
+            <span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span>
+          </div>
+        </div>
+
+        <div class="charset-block">
+          <h2 class="charset-heading">a-z</h2>
+          <div class="charset-grid charset-grid--13">
+            <span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span>
+            <span>h</span><span>i</span><span>j</span><span>k</span><span>l</span><span>m</span>
+            <span>n</span><span>o</span><span>p</span><span>q</span><span>r</span><span>s</span><span>t</span>
+            <span>u</span><span>v</span><span>w</span><span>x</span><span>y</span><span>z</span>
+          </div>
+        </div>
+
+        <div class="charset-block">
+          <h2 class="charset-heading">0-9</h2>
+          <div class="charset-grid charset-grid--10">
+            <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+            <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+          </div>
+        </div>
+
+        <div class="charset-block">
+          <h2 class="charset-heading">Symbols</h2>
+          <div class="charset-grid charset-grid--symbols">
+            <span>!</span><span>"</span><span>#</span><span>$</span><span>%</span><span>&amp;</span><span>'</span>
+            <span>(</span><span>)</span><span>*</span><span>+</span><span>,</span><span>-</span><span>.</span><span>/</span>
+            <span>:</span><span>;</span><span>&lt;</span><span>=</span><span>&gt;</span><span>?</span><span>@</span>
+            <span>[</span><span>\</span><span>]</span><span>^</span><span>_</span><span>`</span>
+            <span>{</span><span>|</span><span>}</span><span>~</span>
+          </div>
+        </div>
+      </section>
+    </main>
+    <img
+      id="custom-cursor"
+      class="custom-cursor"
+      src="gifs/Cursor.gif"
+      alt=""
+      draggable="false"
+    />
+    <script>
+      (function () {
+        const cursor = document.getElementById("custom-cursor");
+        const maxSize = 64;
+
+        function sizeCursor() {
+          let w = cursor.naturalWidth;
+          let h = cursor.naturalHeight;
+          if (!w || !h) return;
+
+          if (w > maxSize || h > maxSize) {
+            const scale = maxSize / Math.max(w, h);
+            w = Math.round(w * scale);
+            h = Math.round(h * scale);
+          }
+
+          cursor.style.width = w + "px";
+          cursor.style.height = h + "px";
         }
-        .msg { font-size: 16px; text-align:center; font-weight: bold;  }
-    </style>
-</head>
-<body>
-    <div class="msg">Rob.games, coming soon</div>
-</body>
+
+        if (cursor.complete) sizeCursor();
+        else cursor.addEventListener("load", sizeCursor);
+
+        document.addEventListener("mousemove", (e) => {
+          cursor.style.left = e.clientX + "px";
+          cursor.style.top = e.clientY + "px";
+        });
+
+        document.addEventListener("mouseleave", () => {
+          cursor.style.visibility = "hidden";
+        });
+
+        document.addEventListener("mouseenter", () => {
+          cursor.style.visibility = "visible";
+        });
+      })();
+    </script>
+  </body>
 </html>
